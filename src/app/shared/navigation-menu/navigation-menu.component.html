@@ -1,0 +1,9 @@
+<ul class="navigation-container">
+  <li
+    [routerLink]="arrayPath[i]"
+    *ngFor="let item of availablePages; index as i"
+  >
+    {{ item }}
+  </li>
+</ul>
+<router-outlet></router-outlet>

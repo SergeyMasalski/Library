@@ -1,0 +1,67 @@
+:host {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #5454546f;
+}
+
+.container-form {
+  box-sizing: border-box;
+  padding: 30px;
+  background-color: #f6f6f6;
+  width: max-content;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+
+  &__close {
+    width: 15px;
+    height: 15px;
+    background-image: url(../../../assets/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-self: flex-end;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  &__save {
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+}
+.container-inputs {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.container-input {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+
+  &__header {
+    margin: 0;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    padding: 5px;
+    width: 30vw;
+  }
+}

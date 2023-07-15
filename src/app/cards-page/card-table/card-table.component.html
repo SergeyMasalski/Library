@@ -1,0 +1,31 @@
+<table class="table">
+  <thead class="table__table-head table-head">
+    <tr class="table-head__string">
+      <th class="table-head__column" *ngFor="let item of tableHeaders">
+        {{ item }}
+      </th>
+    </tr>
+  </thead>
+  <tbody class="table__table-body table-body">
+    <tr class="table-body__string" *ngFor="let string of tableBody">
+      <td class="table-body__column">
+        {{ string.id }}
+      </td>
+      <td class="table-body__column">
+        {{ string.nameVisit }}
+      </td>
+      <td class="table-body__column">
+        {{ string.name }}
+      </td>
+      <td class="table-body__column">
+        {{ string.borDate }}
+      </td>
+      <td
+        class="table-body__column-return"
+        [ngClass]="{ back: !string.retDate }"
+      >
+        {{ string.retDate }}
+      </td>
+    </tr>
+  </tbody>
+</table>

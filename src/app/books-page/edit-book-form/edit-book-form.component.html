@@ -1,0 +1,61 @@
+<div class="container-form">
+  <div class="container-form__close"></div>
+  <h3 class="container-form__header">Edit Book:</h3>
+  <div class="container-inputs"></div>
+  <div class="container-input">
+    <div class="container-input__element">
+      <h4 class="container-input__header">Name book:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        [(ngModel)]="nameBook"
+      />
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Name author:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        [(ngModel)]="nameAuthor"
+      />
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Publishing Year:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        [(ngModel)]="publishingYear"
+      />
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Publishers Name:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        [(ngModel)]="publishersName"
+      />
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Number of Pages:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        [(ngModel)]="numberofPages"
+      />
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Number of Copies:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        [(ngModel)]="numberofCopies"
+      />
+    </div>
+  </div>
+  <button class="container-form__save">Save</button>
+</div>

@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label class="form-group__label">
+    <div class="form-group__text">Sort by:</div>
+    <select type="text" class="form-group__select" [(ngModel)]="sortValue">
+      <option *ngFor="let item of getSortsValue">
+        {{ item }}
+      </option>
+    </select>
+  </label>
+  <button class="form-group__button sort">Sort</button>
+</div>
+
+<div class="form-group">
+  <label class="form-group__label">
+    <div class="form-group__text">Search:</div>
+    <input type="text" class="form-group__input" />
+  </label>
+  <button class="form-group__button search">Search</button>
+</div>

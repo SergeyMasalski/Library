@@ -1,0 +1,20 @@
+.container-sub-header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 2px solid rgba(183, 182, 182, 0.4);
+
+  &__header {
+    color: #009595;
+  }
+
+  &__element {
+    padding: 5px 30px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

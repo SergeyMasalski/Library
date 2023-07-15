@@ -1,0 +1,63 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-head {
+  &__column {
+    border: 2px solid rgb(178, 178, 178, 0.6);
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  &__edit {
+    border: 2px solid rgb(178, 178, 178, 0.6);
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  &__delete {
+    border: 2px solid rgb(178, 178, 178, 0.6);
+    box-sizing: border-box;
+    padding: 10px;
+  }
+}
+
+.table-body {
+  &__column {
+    border: 2px solid rgb(178, 178, 178, 0.6);
+    box-sizing: border-box;
+    padding: 10px 5px;
+    text-align: center;
+  }
+
+  &__edit {
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    background-image: url(../../../assets/pencil.png);
+    width: 60px;
+    border: 2px solid rgb(178, 178, 178, 0.6);
+    box-sizing: border-box;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  &__delete {
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    background-image: url(../../../assets/basket.png);
+    width: 60px;
+    border: 2px solid rgb(178, 178, 178, 0.6);
+    box-sizing: border-box;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+}

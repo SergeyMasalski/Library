@@ -1,0 +1,25 @@
+<div class="container-form">
+  <div class="container-form__close"></div>
+  <h3 class="container-form__header">New Visitor:</h3>
+  <div class="container-inputs"></div>
+  <form [formGroup]="newVisitorForm" class="container-input">
+    <div class="container-input__element">
+      <h4 class="container-input__header">Name visitor:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        formControlName="visitorName"
+      />
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Phone visitor:</h4>
+      <input
+        type="text"
+        class="container-input__input"
+        formControlName="visitorPhone"
+      />
+    </div>
+  </form>
+  <button class="container-form__save">Save</button>
+</div>

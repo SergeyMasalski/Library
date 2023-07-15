@@ -1,0 +1,26 @@
+<table class="table">
+  <thead class="table__table-head table-head">
+    <tr class="table-head__string">
+      <th class="table-head__column" *ngFor="let item of tableHeaders">
+        {{ item }}
+      </th>
+      <th class="table-head__edit">Edit Book</th>
+      <th class="table-head__delete">Delete Book</th>
+    </tr>
+  </thead>
+  <tbody class="table__table-body table-body">
+    <tr class="table-body__string" *ngFor="let book of tableData">
+      <td class="table-body__column">{{ book.bookId }}</td>
+      <td class="table-body__column">{{ book.name }}</td>
+      <td class="table-body__column">{{ book.authorName }}</td>
+      <td class="table-body__column">
+        {{ book.publishingYear | date : "YYYY" }}
+      </td>
+      <td class="table-body__column">{{ book.publishersName }}</td>
+      <td class="table-body__column">{{ book.numberOfPages }}</td>
+      <td class="table-body__column">{{ book.numberOfCopies }}</td>
+      <td class="table-body__edit"></td>
+      <td class="table-body__delete"></td>
+    </tr>
+  </tbody>
+</table>

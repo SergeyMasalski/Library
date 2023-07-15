@@ -1,0 +1,20 @@
+<table class="table">
+  <thead class="table__table-head table-head">
+    <tr class="table-head__string">
+      <th class="table-head__column" *ngFor="let item of tableHeaders">
+        {{ item }}
+      </th>
+      <th class="table-head__edit">Edit Book</th>
+      <th class="table-head__delete">Delete Book</th>
+    </tr>
+  </thead>
+  <tbody class="table__table-body table-body">
+    <tr class="table-body__string" *ngFor="let vistor of tableData">
+      <td class="table-body__column">{{ vistor.visitorId }}</td>
+      <td class="table-body__column">{{ vistor.visitorFullName }}</td>
+      <td class="table-body__column">{{ vistor.visitorPhone }}</td>
+      <td class="table-body__edit"></td>
+      <td class="table-body__delete"></td>
+    </tr>
+  </tbody>
+</table>

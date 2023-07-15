@@ -1,0 +1,23 @@
+<div class="container-form">
+  <div class="container-form__close"></div>
+  <h3 class="container-form__header">New Card:</h3>
+  <div class="container-inputs"></div>
+  <form [formGroup]="newCardForm" class="container-input">
+    <div class="container-input__element">
+      <h4 class="container-input__header">Visitor:</h4>
+      <select class="container-input__input" formControlName="visitor">
+        <option *ngFor="let visitor of getVisitors">
+          {{ visitor.visitorFullName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="container-input__element">
+      <h4 class="container-input__header">Book:</h4>
+      <select class="container-input__input" formControlName="book">
+        <option *ngFor="let book of getBooks">{{ book.name }}</option>
+      </select>
+    </div>
+  </form>
+  <button class="container-form__save">Save</button>
+</div>

@@ -1,0 +1,25 @@
+$border-menu: 1px solid #dde8e7;
+
+.navigation-container {
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: #404040;
+  padding: 0;
+
+  li {
+    list-style-type: none;
+    box-sizing: border-box;
+    padding: 10px 40px;
+    border-left: $border-menu;
+    color: #dde8e7;
+
+    &:hover {
+      background-color: #717171;
+      cursor: pointer;
+    }
+  }
+
+  > li:last-of-type {
+    border-right: $border-menu;
+  }
+}

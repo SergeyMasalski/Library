@@ -1,0 +1,8 @@
+<sub-header [nameSubHeader]="nameSubHeaders.Book"></sub-header>
+<sort-search-books></sort-search-books>
+<table-of-books
+  [tableHeaders]="getHeadersInTable"
+  [tableData]="getBooks"
+></table-of-books>
+<new-book-form *ngIf="displayNewBookForm"></new-book-form>
+<edit-book-form *ngIf="displayEditForm"></edit-book-form>

@@ -24,26 +24,7 @@ export class SortSearchComponentCards {
   onClick(event: MouseEvent): void {
     if (event.target instanceof Element) {
       if (event.target.className === 'form-group__button sort') {
-        const selectValue = this.sortCard.controls['sortValue'].value;
-
-        if (selectValue === this.getSortValues[0]) {
-          this.cardService.sortID();
-        }
-
-        if (selectValue === this.getSortValues[1]) {
-          this.cardService.sortVisitorsNames();
-        }
-
-        if (selectValue === this.getSortValues[2]) {
-          this.cardService.sortBookNames();
-        }
-
-        if (selectValue === this.getSortValues[3]) {
-          this.cardService.sortBorrowDate();
-        }
-
-        if (selectValue === this.getSortValues[4]) {
-        }
+        this.cardService.sortParams = this.sortCard.controls['sortValue'].value;
       }
     }
   }

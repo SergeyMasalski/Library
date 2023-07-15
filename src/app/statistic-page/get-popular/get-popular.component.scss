@@ -1,0 +1,26 @@
+.container-sub-header {
+  display: flex;
+  flex-flow: column;
+  box-sizing: border-box;
+  border-bottom: 2px solid rgba(183, 182, 182, 0.4);
+
+  &__container-buttons {
+    display: flex;
+    flex-flow: row;
+    gap: 40px;
+    padding-top: 10px;
+    box-sizing: border-box;
+  }
+
+  &__header {
+    color: #009595;
+  }
+
+  &__button {
+    padding: 5px 30px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

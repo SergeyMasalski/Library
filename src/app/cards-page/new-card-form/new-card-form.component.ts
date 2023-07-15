@@ -64,8 +64,6 @@ export class NewCardFormComponent {
             tookBook: new Date(),
             returnBook: null,
           });
-          console.log(this.cardsService.getCards);
-          console.log(this.cardsService.getCardsTable);
 
           this.cardsService.closeFormNewCard();
         }

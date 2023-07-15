@@ -1,0 +1,8 @@
+.statistic-container {
+  display: flex;
+  flex-flow: column;
+
+  &__element {
+    color: rgba(48, 48, 48, 0.8);
+  }
+}

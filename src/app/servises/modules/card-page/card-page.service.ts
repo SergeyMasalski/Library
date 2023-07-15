@@ -10,7 +10,7 @@ export class CardPageService {
   private displayNewCardForm: boolean = false;
   private cards: CommenApplicationNamespace.VisitorCard[] = CARDS;
   private idCard: number = Math.max(...this.cards.map((card) => card.idCard));
-  private tableData: any[] = [];
+  public sortParams: string = this.getHeadersInTable[0];
 
   constructor(
     private booksService: BookPageService,
@@ -30,7 +30,7 @@ export class CardPageService {
   }
 
   get getCardsTable() {
-    this.tableData = this.cards.map((item) => {
+    return this.cards.map((item) => {
       const idCard = item.idCard;
       const nameBook = this.booksService.getBook(`${item.bookId}`)?.name;
       const nameVisitor = this.visitorsService.getVisitor(
@@ -64,8 +64,6 @@ export class CardPageService {
         retDate: 'Error',
       };
     });
-
-    return this.tableData;
   }
 
   public get nextCardId(): number {
@@ -101,20 +99,22 @@ export class CardPageService {
     return false;
   }
 
-  public sortID(): void {
-    this.getCardsTable.sort((a, b) => a.id - b.id);
+  public sortID(): any[] {
+    return this.getCardsTable.sort((a, b) => a.id - b.id);
   }
 
-  public sortVisitorsNames(): void {
-    this.getCardsTable.sort((a, b) => a.nameVisit.localeCompare(b.nameVisit));
+  public sortVisitorsNames(): any[] {
+    return this.getCardsTable.sort((a, b) =>
+      a.nameVisit.localeCompare(b.nameVisit)
+    );
   }
 
-  public sortBookNames(): void {
-    this.getCardsTable.sort((a, b) => a.name.localeCompare(b.name));
+  public sortBookNames(): any[] {
+    return this.getCardsTable.sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  public sortBorrowDate(): void {
-    this.getCardsTable.sort(
+  public sortBorrowDate(): any[] {
+    return this.getCardsTable.sort(
       (a, b) =>
         Date.parse(a.borDate.split('.').reverse().join('-')) -
         Date.parse(b.borDate.split('.').reverse().join('-'))

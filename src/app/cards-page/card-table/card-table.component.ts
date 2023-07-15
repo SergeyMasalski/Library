@@ -13,6 +13,22 @@ export class CardTableComponent {
   constructor(private cardService: CardPageService) {}
 
   get tableBody(): any[] {
-    return this.cardService.getCardsTable;
+    if (this.cardService.sortParams === this.cardService.getHeadersInTable[0]) {
+      return this.cardService.sortID();
+    }
+
+    if (this.cardService.sortParams === this.cardService.getHeadersInTable[1]) {
+      return this.cardService.sortVisitorsNames();
+    }
+
+    if (this.cardService.sortParams === this.cardService.getHeadersInTable[2]) {
+      return this.cardService.sortBookNames();
+    }
+
+    if (this.cardService.sortParams === this.cardService.getHeadersInTable[3]) {
+      return this.cardService.sortBorrowDate();
+    }
+
+    return [];
   }
 }

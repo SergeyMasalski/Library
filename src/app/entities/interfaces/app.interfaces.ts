@@ -22,4 +22,14 @@ export namespace CommenApplicationNamespace {
     tookBook: Date;
     returnBook: Date | null;
   }
+
+  export interface PopularBooks {
+    idBook: number;
+    quantity: number;
+  }
+
+  export interface ActiveUsers {
+    idUser: number;
+    quantity: number;
+  }
 }

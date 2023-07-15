@@ -1,0 +1,8 @@
+<div class="container-sub-header">
+  <div class="container-sub-header__container-buttons">
+    <button class="container-sub-header__button" *ngFor="let item of buttons">
+      {{ item }}
+    </button>
+  </div>
+  <h3 class="container-sub-header__header">{{ getHeader | uppercase }}:</h3>
+</div>

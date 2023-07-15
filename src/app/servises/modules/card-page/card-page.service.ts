@@ -10,7 +10,7 @@ export class CardPageService {
   private displayNewCardForm: boolean = false;
   private cards: CommenApplicationNamespace.VisitorCard[] = CARDS;
   private idCard: number = Math.max(...this.cards.map((card) => card.idCard));
-  private tableData: any[] = this.setCardsTable;
+  private tableData: any[] = [];
 
   constructor(
     private booksService: BookPageService,
@@ -30,12 +30,7 @@ export class CardPageService {
   }
 
   get getCardsTable() {
-    this.tableData = this.setCardsTable;
-    return this.tableData;
-  }
-
-  get setCardsTable(): any[] {
-    return this.cards.map((item) => {
+    this.tableData = this.cards.map((item) => {
       const idCard = item.idCard;
       const nameBook = this.booksService.getBook(`${item.bookId}`)?.name;
       const nameVisitor = this.visitorsService.getVisitor(
@@ -69,6 +64,8 @@ export class CardPageService {
         retDate: 'Error',
       };
     });
+
+    return this.tableData;
   }
 
   public get nextCardId(): number {

@@ -1,3 +1,5 @@
 <div class="statistic-container">
-  <h2 class="statistic-container__element">1</h2>
+  <h2 class="statistic-container__element" *ngFor="let item of getList">
+    {{ item }}
+  </h2>
 </div>

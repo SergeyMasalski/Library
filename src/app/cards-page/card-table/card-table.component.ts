@@ -13,22 +13,44 @@ export class CardTableComponent {
   constructor(private cardService: CardPageService) {}
 
   get tableBody(): any[] {
-    if (this.cardService.sortParams === this.cardService.getHeadersInTable[0]) {
-      return this.cardService.sortID();
-    }
+    switch (true) {
+      case this.cardService.sortParams ===
+        this.cardService.getHeadersInTable[0]:
+        return this.cardService.sortID().filter((card) => {
+          if (card.name.includes(this.cardService.search)) return true;
+          if (card.nameVisit.includes(this.cardService.search)) return true;
 
-    if (this.cardService.sortParams === this.cardService.getHeadersInTable[1]) {
-      return this.cardService.sortVisitorsNames();
-    }
+          return false;
+        });
 
-    if (this.cardService.sortParams === this.cardService.getHeadersInTable[2]) {
-      return this.cardService.sortBookNames();
-    }
+      case this.cardService.sortParams ===
+        this.cardService.getHeadersInTable[1]:
+        return this.cardService.sortVisitorsNames().filter((card) => {
+          if (card.name.includes(this.cardService.search)) return true;
+          if (card.nameVisit.includes(this.cardService.search)) return true;
 
-    if (this.cardService.sortParams === this.cardService.getHeadersInTable[3]) {
-      return this.cardService.sortBorrowDate();
-    }
+          return false;
+        });
 
-    return [];
+      case this.cardService.sortParams ===
+        this.cardService.getHeadersInTable[2]:
+        return this.cardService.sortBookNames().filter((card) => {
+          if (card.name.includes(this.cardService.search)) return true;
+          if (card.nameVisit.includes(this.cardService.search)) return true;
+
+          return false;
+        });
+
+      case this.cardService.sortParams ===
+        this.cardService.getHeadersInTable[3]:
+        return this.cardService.sortBorrowDate().filter((card) => {
+          if (card.name.includes(this.cardService.search)) return true;
+          if (card.nameVisit.includes(this.cardService.search)) return true;
+          return false;
+        });
+
+      default:
+        return [];
+    }
   }
 }

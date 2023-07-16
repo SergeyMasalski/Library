@@ -17,6 +17,7 @@ export class BookPageService {
     numberOfPages: 0,
     numberOfCopies: 0,
   };
+  private searchBook: string = '';
 
   constructor() {}
 
@@ -46,6 +47,22 @@ export class BookPageService {
     return this.books;
   }
 
+  get getSearchBooks(): CommenApplicationNamespace.Book[] {
+    return this.books.filter((book) => {
+      switch (true) {
+        case book.name.includes(this.searchBook):
+          return true;
+        case book.authorName.includes(this.searchBook):
+          return true;
+        case book.publishersName.includes(this.searchBook):
+          return true;
+
+        default:
+          return false;
+      }
+    });
+  }
+
   get idBookNext(): number {
     return (
       this.getBooks.slice().sort((a, b) => b.bookId - a.bookId)[0].bookId + 1
@@ -60,8 +77,16 @@ export class BookPageService {
     return this.editsBook.bookId;
   }
 
+  get getSearch(): string {
+    return this.searchBook;
+  }
+
   set setEditBook(book: CommenApplicationNamespace.Book) {
     this.editsBook = book;
+  }
+
+  set setSearch(search: string) {
+    this.searchBook = search;
   }
 
   openFormEditBook(): boolean {

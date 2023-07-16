@@ -8,10 +8,14 @@
   <button class="form-group__button sort">Sort</button>
 </form>
 
-<div class="form-group">
+<form class="form-group" [formGroup]="searchForm">
   <label class="form-group__label">
     <div class="form-group__text">Search:</div>
-    <input type="text" class="form-group__input" />
+    <input
+      type="text"
+      class="form-group__input"
+      formControlName="searchValue"
+    />
   </label>
   <button class="form-group__button search">Search</button>
-</div>
+</form>

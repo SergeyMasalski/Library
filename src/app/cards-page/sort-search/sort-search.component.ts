@@ -8,11 +8,16 @@ import { CardPageService } from 'src/app/servises/modules/card-page/card-page.se
   styleUrls: ['./sort-search.component.scss'],
 })
 export class SortSearchComponentCards {
-  sortCard: FormGroup;
+  public sortCard: FormGroup;
+  public searchForm: FormGroup;
 
   constructor(private cardService: CardPageService) {
     this.sortCard = new FormGroup({
       sortValue: new FormControl(this.getSortValues[0]),
+    });
+
+    this.searchForm = new FormGroup({
+      searchValue: new FormControl(''),
     });
   }
 
@@ -25,6 +30,11 @@ export class SortSearchComponentCards {
     if (event.target instanceof Element) {
       if (event.target.className === 'form-group__button sort') {
         this.cardService.sortParams = this.sortCard.controls['sortValue'].value;
+      }
+
+      if (event.target.className === 'form-group__button search') {
+        console.log(this.searchForm.controls['searchValue'].value);
+        this.cardService.search = this.searchForm.controls['searchValue'].value;
       }
     }
   }

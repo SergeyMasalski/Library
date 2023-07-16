@@ -8,11 +8,16 @@ import { VisitorsPageService } from 'src/app/servises/modules/visitors-page/visi
   styleUrls: ['./sort-search.component.scss'],
 })
 export class SortSearchComponentVisitors {
-  sortForm: FormGroup;
+  public sortForm: FormGroup;
+  public searchGroup: FormGroup;
 
   constructor(private visiorService: VisitorsPageService) {
     this.sortForm = new FormGroup({
       sortVisitor: new FormControl(''),
+    });
+
+    this.searchGroup = new FormGroup({
+      searchVisitor: new FormControl(''),
     });
   }
 
@@ -33,6 +38,11 @@ export class SortSearchComponentVisitors {
         if (selectedValue === this.getSortValue[1]) {
           this.visiorService.sortVisitorsNames();
         }
+      }
+
+      if (event.target.className === 'form-group__button search') {
+        this.visiorService.setSearchVisitors =
+          this.searchGroup.controls['searchVisitor'].value;
       }
     }
   }

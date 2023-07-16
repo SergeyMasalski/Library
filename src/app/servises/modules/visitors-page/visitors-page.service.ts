@@ -13,9 +13,19 @@ export class VisitorsPageService {
     visitorFullName: '',
     visitorPhone: '',
   };
+  private searchVisitors: string = '';
 
   get getVisitors(): CommenApplicationNamespace.Visitor[] {
     return this.visitors;
+  }
+
+  get getSearchVisitors(): CommenApplicationNamespace.Visitor[] {
+    return this.visitors.filter((visitor) => {
+      if (visitor.visitorFullName.includes(this.searchVisitors)) return true;
+      if (visitor.visitorPhone.includes(this.searchVisitors)) return true;
+
+      return false;
+    });
   }
 
   get getHeadersInTable(): string[] {
@@ -43,6 +53,14 @@ export class VisitorsPageService {
 
   get editVisitorInForm(): CommenApplicationNamespace.Visitor {
     return this.currentEditVisitor;
+  }
+
+  get getSearchVisitor(): string {
+    return this.searchVisitors;
+  }
+
+  set setSearchVisitors(search: string) {
+    this.searchVisitors = search;
   }
 
   public openFormNewVisitor(): void {

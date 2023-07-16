@@ -12,10 +12,14 @@
   <button class="form-group__button sort">Sort</button>
 </form>
 
-<div class="form-group">
+<form class="form-group" [formGroup]="searchGroup">
   <label class="form-group__label">
     <div class="form-group__text">Search:</div>
-    <input type="text" class="form-group__input" />
+    <input
+      type="text"
+      class="form-group__input"
+      formControlName="searchVisitor"
+    />
   </label>
-  <button class="form-group__button">Search</button>
-</div>
+  <button class="form-group__button search">Search</button>
+</form>

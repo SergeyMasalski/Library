@@ -15,6 +15,9 @@ export class TableOfVisitorsComponent {
   }
 
   get tableData(): CommenApplicationNamespace.Visitor[] {
-    return this.visitorService.getVisitors;
+    if (this.visitorService.getSearchVisitor === '') {
+      return this.visitorService.getVisitors;
+    }
+    return this.visitorService.getSearchVisitors;
   }
 }

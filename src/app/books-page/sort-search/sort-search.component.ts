@@ -8,6 +8,7 @@ import { BookPageService } from 'src/app/servises/modules/book-page/book-page.se
 })
 export class SortSearchComponentBooks {
   public sortValue: string = this.getSortsValue[0];
+  public searchValue: string = '';
 
   constructor(private booksService: BookPageService) {}
 
@@ -46,6 +47,10 @@ export class SortSearchComponentBooks {
       if (this.sortValue === this.getSortsValue[6]) {
         this.booksService.sortBookCopies();
       }
+    }
+
+    if (target.className === 'form-group__button search') {
+      this.booksService.setSearch = this.searchValue;
     }
   }
 }

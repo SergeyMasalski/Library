@@ -11,29 +11,6 @@ import { CommenApplicationNamespace } from '../../entities/interfaces/app.interf
   styleUrls: ['./new-card-form.component.scss'],
 })
 export class NewCardFormComponent {
-  public newCardForm: FormGroup;
-
-  constructor(
-    private cardsService: CardPageService,
-    private visitorsService: VisitorsPageService,
-    private booksService: BookPageService
-  ) {
-    this.newCardForm = new FormGroup({
-      visitor: new FormControl(
-        `${this.visitorsService.getVisitors[0].visitorFullName}`
-      ),
-      book: new FormControl(`${this.booksService.getBooks[0].name}`),
-    });
-  }
-
-  get getVisitors(): CommenApplicationNamespace.Visitor[] {
-    return this.visitorsService.getVisitors;
-  }
-
-  get getBooks(): CommenApplicationNamespace.Book[] {
-    return this.booksService.getBooks;
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent) {
     if (event.target instanceof Element) {
@@ -69,5 +46,28 @@ export class NewCardFormComponent {
         }
       }
     }
+  }
+
+  public newCardForm: FormGroup;
+
+  constructor(
+    private cardsService: CardPageService,
+    private visitorsService: VisitorsPageService,
+    private booksService: BookPageService
+  ) {
+    this.newCardForm = new FormGroup({
+      visitor: new FormControl(
+        `${this.visitorsService.getVisitors[0].visitorFullName}`
+      ),
+      book: new FormControl(`${this.booksService.getBooks[0].name}`),
+    });
+  }
+
+  get getVisitors(): CommenApplicationNamespace.Visitor[] {
+    return this.visitorsService.getVisitors;
+  }
+
+  get getBooks(): CommenApplicationNamespace.Book[] {
+    return this.booksService.getBooks;
   }
 }

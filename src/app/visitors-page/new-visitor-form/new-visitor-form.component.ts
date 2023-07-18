@@ -8,6 +8,27 @@ import { VisitorsPageService } from 'src/app/servises/modules/visitors-page/visi
   styleUrls: ['./new-visitor-form.component.scss'],
 })
 export class NewVisitorFormComponent {
+  @HostListener('click', ['$event'])
+  onClick(event: PointerEvent): void {
+    if (event.target instanceof Element) {
+      if (event.target.className === 'container-form__close') {
+        this.visitorsService.closeFormNewVisitor();
+      }
+
+      if (event.target.className === 'container-form__save') {
+        if (this.validate) {
+          this.visitorsService.addVisitor({
+            visitorId: this.visitorsService.idNewVisitor,
+            visitorFullName: this.newVisitorForm.controls['visitorName'].value,
+            visitorPhone: this.newVisitorForm.controls['visitorPhone'].value,
+          });
+
+          this.visitorsService.closeFormNewVisitor();
+        }
+      }
+    }
+  }
+
   public newVisitorForm: FormGroup;
 
   constructor(private visitorsService: VisitorsPageService) {
@@ -38,27 +59,5 @@ export class NewVisitorFormComponent {
       return true;
     }
     return false;
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event: PointerEvent): void {
-    if (event.target instanceof Element) {
-      if (event.target.className === 'container-form__close') {
-        this.visitorsService.closeFormNewVisitor();
-      }
-
-      if (event.target.className === 'container-form__save') {
-        if (this.validate) {
-          this.visitorsService.addVisitor({
-            visitorId: this.visitorsService.idNewVisitor,
-            visitorFullName: this.newVisitorForm.controls['visitorName'].value,
-            visitorPhone: this.newVisitorForm.controls['visitorPhone'].value,
-          });
-          console.log(this.visitorsService.getVisitors);
-
-          this.visitorsService.closeFormNewVisitor();
-        }
-      }
-    }
   }
 }

@@ -32,6 +32,7 @@ export class CardPageService {
           }
         )
       : CARDS;
+
   private idCard: number = Math.max(...this.cards.map((card) => card.idCard));
   public search: string = '';
   public sortParams: string = this.getHeadersInTable[0];

@@ -7,15 +7,6 @@ import { BookPageService } from 'src/app/servises/modules/book-page/book-page.se
   styleUrls: ['./sort-search.component.scss'],
 })
 export class SortSearchComponentBooks {
-  public sortValue: string = this.getSortsValue[0];
-  public searchValue: string = '';
-
-  constructor(private booksService: BookPageService) {}
-
-  get getSortsValue(): string[] {
-    return this.booksService.getHeadersInTable;
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -52,5 +43,14 @@ export class SortSearchComponentBooks {
     if (target.className === 'form-group__button search') {
       this.booksService.setSearch = this.searchValue;
     }
+  }
+
+  public sortValue: string = this.getSortsValue[0];
+  public searchValue: string = '';
+
+  constructor(private booksService: BookPageService) {}
+
+  get getSortsValue(): string[] {
+    return this.booksService.getHeadersInTable;
   }
 }

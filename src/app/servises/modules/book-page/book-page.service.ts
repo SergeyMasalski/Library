@@ -9,7 +9,19 @@ export class BookPageService {
   private validateEditForm: boolean = false;
   private books: CommenApplicationNamespace.Book[] =
     localStorage.getItem('books') !== null
-      ? JSON.parse(localStorage.getItem('books')!)
+      ? JSON.parse(localStorage.getItem('books')!).map(
+          (book: CommenApplicationNamespace.Book) => {
+            return {
+              bookId: book.bookId,
+              name: book.name,
+              authorName: book.authorName,
+              publishingYear: new Date(book.publishingYear),
+              publishersName: book.publishersName,
+              numberOfPages: +book.numberOfPages,
+              numberOfCopies: +book.numberOfCopies,
+            };
+          }
+        )
       : BOOKS;
   private editsBook: CommenApplicationNamespace.Book = {
     bookId: 0,

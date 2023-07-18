@@ -63,7 +63,5 @@ export class StatisticPageService {
           this.visitorsService.getVisitor(`${item.idUser}`)?.visitorFullName
       )
       .slice(0, 5);
-
-    return [];
   }
 }

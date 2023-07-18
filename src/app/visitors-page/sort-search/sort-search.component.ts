@@ -8,23 +8,6 @@ import { VisitorsPageService } from 'src/app/servises/modules/visitors-page/visi
   styleUrls: ['./sort-search.component.scss'],
 })
 export class SortSearchComponentVisitors {
-  public sortForm: FormGroup;
-  public searchGroup: FormGroup;
-
-  constructor(private visiorService: VisitorsPageService) {
-    this.sortForm = new FormGroup({
-      sortVisitor: new FormControl(''),
-    });
-
-    this.searchGroup = new FormGroup({
-      searchVisitor: new FormControl(''),
-    });
-  }
-
-  get getSortValue(): string[] {
-    return this.visiorService.getHeadersInTable.slice(0, -1);
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
     if (event.target instanceof HTMLElement) {
@@ -45,5 +28,22 @@ export class SortSearchComponentVisitors {
           this.searchGroup.controls['searchVisitor'].value;
       }
     }
+  }
+
+  public sortForm: FormGroup;
+  public searchGroup: FormGroup;
+
+  constructor(private visiorService: VisitorsPageService) {
+    this.sortForm = new FormGroup({
+      sortVisitor: new FormControl(''),
+    });
+
+    this.searchGroup = new FormGroup({
+      searchVisitor: new FormControl(''),
+    });
+  }
+
+  get getSortValue(): string[] {
+    return this.visiorService.getHeadersInTable.slice(0, -1);
   }
 }

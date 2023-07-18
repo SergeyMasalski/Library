@@ -9,8 +9,40 @@ import { BookPageService } from 'src/app/servises/modules/book-page/book-page.se
   styleUrls: ['./new-book-form.component.scss'],
 })
 export class NewBookFormComponent {
-  public validate: boolean = false;
+  @HostListener('click', ['$event'])
+  onClick(event: PointerEvent) {
+    if (event.target instanceof Element) {
+      if (event.target.className === 'container-form__save') {
+        if (
+          this.validateForm(
+            this.nameBook,
+            this.nameAuthor,
+            this.publishingYear,
+            this.publishersName,
+            this.numberofPages,
+            this.numberofCopies
+          )
+        ) {
+          this.bookservice.addBook({
+            bookId: this.bookservice.idBookNext,
+            name: this.nameBook,
+            authorName: this.nameAuthor,
+            publishingYear: new Date(+this.publishingYear, 1, 1),
+            publishersName: this.publishersName,
+            numberOfPages: +this.numberofPages,
+            numberOfCopies: +this.numberofCopies,
+          });
 
+          this.bookservice.closeFormNewBook;
+          return;
+        }
+
+        this.bookservice.openFormNewBook;
+      }
+    }
+  }
+
+  public validate: boolean = false;
   public nameBook: string = '';
   public nameAuthor: string = '';
   public publishingYear: string = '';
@@ -45,38 +77,5 @@ export class NewBookFormComponent {
     }
 
     return this.validate;
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event: PointerEvent) {
-    if (event.target instanceof Element) {
-      if (event.target.className === 'container-form__save') {
-        if (
-          this.validateForm(
-            this.nameBook,
-            this.nameAuthor,
-            this.publishingYear,
-            this.publishersName,
-            this.numberofPages,
-            this.numberofCopies
-          )
-        ) {
-          this.bookservice.addBook({
-            bookId: this.bookservice.idBookNext,
-            name: this.nameBook,
-            authorName: this.nameAuthor,
-            publishingYear: new Date(+this.publishingYear, 1, 1),
-            publishersName: this.publishersName,
-            numberOfPages: +this.numberofPages,
-            numberOfCopies: +this.numberofCopies,
-          });
-
-          this.bookservice.closeFormNewBook;
-          return;
-        }
-
-        this.bookservice.openFormNewBook;
-      }
-    }
   }
 }

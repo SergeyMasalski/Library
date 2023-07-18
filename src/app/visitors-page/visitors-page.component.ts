@@ -9,18 +9,6 @@ import { CommenApplicationNamespace } from '../entities/interfaces/app.interface
   styleUrls: ['./visitors-page.component.scss'],
 })
 export class VisitorsPageComponent {
-  public nameSubHeaders = PageNames;
-
-  constructor(private visitorService: VisitorsPageService) {}
-
-  get displayFormNewVisitor(): boolean {
-    return this.visitorService.getDisplayFormNewVisitor;
-  }
-
-  get displayFormEditVisitor(): boolean {
-    return this.visitorService.getDisplayFormEditVisitor;
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent): void {
     if (event.target instanceof Element) {
@@ -43,5 +31,17 @@ export class VisitorsPageComponent {
         }
       }
     }
+  }
+
+  public nameSubHeaders = PageNames;
+
+  constructor(private visitorService: VisitorsPageService) {}
+
+  get displayFormNewVisitor(): boolean {
+    return this.visitorService.getDisplayFormNewVisitor;
+  }
+
+  get displayFormEditVisitor(): boolean {
+    return this.visitorService.getDisplayFormEditVisitor;
   }
 }

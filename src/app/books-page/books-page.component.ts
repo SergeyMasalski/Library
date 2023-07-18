@@ -9,23 +9,6 @@ import { CommenApplicationNamespace } from '../entities/interfaces/app.interface
   styleUrls: ['./books-page.component.scss'],
 })
 export class BooksPageComponent {
-  public nameSubHeaders = PageNames;
-  public displayNewBookForm: boolean = this.bookService.closeFormNewBook;
-
-  constructor(private bookService: BookPageService) {}
-
-  get getHeadersInTable(): string[] {
-    return this.bookService.getHeadersInTable;
-  }
-
-  get getBooks(): CommenApplicationNamespace.Book[] {
-    return this.bookService.getBooks;
-  }
-
-  get displayEditForm(): boolean {
-    return this.bookService.showValidateEditForm;
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent): void {
     if (event.target instanceof Element) {
@@ -61,5 +44,22 @@ export class BooksPageComponent {
         }
       }
     }
+  }
+
+  public nameSubHeaders = PageNames;
+  public displayNewBookForm: boolean = this.bookService.closeFormNewBook;
+
+  constructor(private bookService: BookPageService) {}
+
+  get getHeadersInTable(): string[] {
+    return this.bookService.getHeadersInTable;
+  }
+
+  get getBooks(): CommenApplicationNamespace.Book[] {
+    return this.bookService.getBooks;
+  }
+
+  get displayEditForm(): boolean {
+    return this.bookService.showValidateEditForm;
   }
 }

@@ -9,18 +9,6 @@ import { CardPageService } from '../servises/modules/card-page/card-page.service
   styleUrls: ['./cards-page.component.scss'],
 })
 export class CardsPageComponent {
-  public nameSubHeaders = PageNames;
-
-  constructor(private cardService: CardPageService) {}
-
-  get getHeadersInTable(): string[] {
-    return Object.values(HeadersCardsTable);
-  }
-
-  get getDisplayFormNewCard(): boolean {
-    return this.cardService.getDisplayNewCardForm;
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent) {
     if (event.target instanceof Element) {
@@ -38,5 +26,17 @@ export class CardsPageComponent {
         }
       }
     }
+  }
+
+  public nameSubHeaders = PageNames;
+
+  constructor(private cardService: CardPageService) {}
+
+  get getHeadersInTable(): string[] {
+    return Object.values(HeadersCardsTable);
+  }
+
+  get getDisplayFormNewCard(): boolean {
+    return this.cardService.getDisplayNewCardForm;
   }
 }

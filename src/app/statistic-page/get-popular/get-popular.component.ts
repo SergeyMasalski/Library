@@ -8,14 +8,6 @@ import { StatisticPageService } from 'src/app/servises/modules/statistic-page/st
   styleUrls: ['./get-popular.component.scss'],
 })
 export class GetPopularComponent {
-  public buttons: string[] = Object.values(Statistic);
-
-  constructor(private statisticService: StatisticPageService) {}
-
-  get getHeader(): string {
-    return this.statisticService.getStatisticHeader;
-  }
-
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
     if (event.target instanceof HTMLElement) {
@@ -23,5 +15,13 @@ export class GetPopularComponent {
         this.statisticService.setStatisticHeader = event.target.innerText;
       }
     }
+  }
+
+  public buttons: string[] = Object.values(Statistic);
+
+  constructor(private statisticService: StatisticPageService) {}
+
+  get getHeader(): string {
+    return this.statisticService.getStatisticHeader;
   }
 }

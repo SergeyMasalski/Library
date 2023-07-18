@@ -200,4 +200,27 @@ export class BookPageService {
   public sortBookCopies(): void {
     this.books.sort((a, b) => a.numberOfCopies - b.numberOfCopies);
   }
+
+  public startComponent(): void {
+    this.books =
+      localStorage.getItem('books') !== null
+        ? JSON.parse(localStorage.getItem('books')!).map(
+            (book: CommenApplicationNamespace.Book) => {
+              return {
+                bookId: book.bookId,
+                name: book.name,
+                authorName: book.authorName,
+                publishingYear: new Date(book.publishingYear),
+                publishersName: book.publishersName,
+                numberOfPages: +book.numberOfPages,
+                numberOfCopies: +book.numberOfCopies,
+              };
+            }
+          )
+        : BOOKS;
+  }
+
+  destroyComponent(): void {
+    localStorage.setItem('books', JSON.stringify(this.books));
+  }
 }

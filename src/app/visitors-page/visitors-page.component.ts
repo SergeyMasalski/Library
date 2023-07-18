@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { PageNames } from '../entities/enums/pages.enum';
 import { VisitorsPageService } from '../servises/modules/visitors-page/visitors-page.service';
 import { CommenApplicationNamespace } from '../entities/interfaces/app.interfaces';
@@ -8,7 +8,7 @@ import { CommenApplicationNamespace } from '../entities/interfaces/app.interface
   templateUrl: './visitors-page.component.html',
   styleUrls: ['./visitors-page.component.scss'],
 })
-export class VisitorsPageComponent {
+export class VisitorsPageComponent implements OnInit, OnDestroy {
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent): void {
     if (event.target instanceof Element) {
@@ -37,11 +37,19 @@ export class VisitorsPageComponent {
 
   constructor(private visitorService: VisitorsPageService) {}
 
+  ngOnInit(): void {
+    this.visitorService.startComponent();
+  }
+
   get displayFormNewVisitor(): boolean {
     return this.visitorService.getDisplayFormNewVisitor;
   }
 
   get displayFormEditVisitor(): boolean {
     return this.visitorService.getDisplayFormEditVisitor;
+  }
+
+  ngOnDestroy(): void {
+    this.visitorService.destroyComponent();
   }
 }

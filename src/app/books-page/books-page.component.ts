@@ -8,7 +8,7 @@ import { CommenApplicationNamespace } from '../entities/interfaces/app.interface
   templateUrl: './books-page.component.html',
   styleUrls: ['./books-page.component.scss'],
 })
-export class BooksPageComponent {
+export class BooksPageComponent implements OnInit, OnDestroy {
   @HostListener('click', ['$event'])
   onClick(event: PointerEvent): void {
     if (event.target instanceof Element) {
@@ -51,6 +51,10 @@ export class BooksPageComponent {
 
   constructor(private bookService: BookPageService) {}
 
+  ngOnInit(): void {
+    this.bookService.startComponent();
+  }
+
   get getHeadersInTable(): string[] {
     return this.bookService.getHeadersInTable;
   }
@@ -61,5 +65,9 @@ export class BooksPageComponent {
 
   get displayEditForm(): boolean {
     return this.bookService.showValidateEditForm;
+  }
+
+  ngOnDestroy(): void {
+    this.bookService.destroyComponent();
   }
 }

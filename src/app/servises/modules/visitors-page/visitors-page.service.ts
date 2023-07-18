@@ -147,4 +147,15 @@ export class VisitorsPageService {
       a.visitorFullName.localeCompare(b.visitorFullName)
     );
   }
+
+  public startComponent() {
+    this.visitors =
+      localStorage.getItem('cards') !== null
+        ? JSON.parse(localStorage.getItem('visitors')!)
+        : VISITORS;
+  }
+
+  public destroyComponent() {
+    localStorage.setItem('visitors', JSON.stringify(this.visitors));
+  }
 }

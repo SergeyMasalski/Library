@@ -5,7 +5,10 @@ import { VISITORS } from 'src/app/entities/mock/visitors.mock';
 
 @Injectable()
 export class VisitorsPageService {
-  private visitors = VISITORS;
+  private visitors: CommenApplicationNamespace.Visitor[] =
+    localStorage.getItem('cards') !== null
+      ? JSON.parse(localStorage.getItem('visitors')!)
+      : VISITORS;
   private displayFormNewVisitor: boolean = false;
   private displayFormEditVisitor: boolean = false;
   private currentEditVisitor: CommenApplicationNamespace.Visitor = {
@@ -96,6 +99,7 @@ export class VisitorsPageService {
 
   public addVisitor(vistor: CommenApplicationNamespace.Visitor): void {
     this.visitors.push(vistor);
+    localStorage.setItem('visitors', JSON.stringify(this.visitors));
   }
 
   public removeVisitor(id: string): void {
@@ -111,6 +115,7 @@ export class VisitorsPageService {
         ),
         1
       );
+      localStorage.setItem('visitors', JSON.stringify(this.visitors));
     }
   }
 
@@ -129,6 +134,7 @@ export class VisitorsPageService {
         1,
         visitor
       );
+      localStorage.setItem('visitors', JSON.stringify(this.visitors));
     }
   }
 

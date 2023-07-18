@@ -7,7 +7,10 @@ import { HeadersBooksTable } from 'src/app/entities/enums/header-table.enum';
 export class BookPageService {
   private validateNewBook: boolean = false;
   private validateEditForm: boolean = false;
-  private books = BOOKS;
+  private books: CommenApplicationNamespace.Book[] =
+    localStorage.getItem('books') !== null
+      ? JSON.parse(localStorage.getItem('books')!)
+      : BOOKS;
   private editsBook: CommenApplicationNamespace.Book = {
     bookId: 0,
     name: '',
@@ -105,6 +108,7 @@ export class BookPageService {
 
   public addBook(book: CommenApplicationNamespace.Book): void {
     this.books.push(book);
+    localStorage.setItem('books', JSON.stringify(this.books));
   }
 
   public removeBook(id: string): boolean {
@@ -114,6 +118,7 @@ export class BookPageService {
         this.getBooks.findIndex((item) => item === book),
         1
       );
+      localStorage.setItem('books', JSON.stringify(this.books));
       return true;
     }
     return false;
@@ -129,6 +134,7 @@ export class BookPageService {
         1,
         book
       );
+      localStorage.setItem('books', JSON.stringify(this.books));
 
       return true;
     }
@@ -140,6 +146,7 @@ export class BookPageService {
     if (book) {
       if (book.numberOfCopies > 0) {
         book.numberOfCopies--;
+        localStorage.setItem('books', JSON.stringify(this.books));
         return true;
       }
     }
@@ -150,6 +157,7 @@ export class BookPageService {
     const book = this.books.find((item) => item.bookId === +id);
     if (book) {
       book.numberOfCopies++;
+      localStorage.setItem('books', JSON.stringify(this.books));
       return true;
     }
     return false;

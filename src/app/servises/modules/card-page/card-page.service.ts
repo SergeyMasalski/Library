@@ -8,7 +8,30 @@ import { CARDS } from 'src/app/entities/mock/cards.mock';
 @Injectable()
 export class CardPageService {
   private displayNewCardForm: boolean = false;
-  private cards: CommenApplicationNamespace.VisitorCard[] = CARDS;
+  private cards: CommenApplicationNamespace.VisitorCard[] =
+    localStorage.getItem('cards') !== null
+      ? JSON.parse(localStorage.getItem('cards')!).map(
+          (card: CommenApplicationNamespace.VisitorCard) => {
+            if (card.returnBook !== null) {
+              return {
+                idCard: card.idCard,
+                visitorId: card.visitorId,
+                bookId: card.bookId,
+                tookBook: new Date(card.tookBook),
+                returnBook: new Date(card.returnBook),
+              };
+            }
+
+            return {
+              idCard: card.idCard,
+              visitorId: card.visitorId,
+              bookId: card.bookId,
+              tookBook: new Date(card.tookBook),
+              returnBook: card.returnBook,
+            };
+          }
+        )
+      : CARDS;
   private idCard: number = Math.max(...this.cards.map((card) => card.idCard));
   public search: string = '';
   public sortParams: string = this.getHeadersInTable[0];
@@ -88,6 +111,7 @@ export class CardPageService {
 
   public addCard(card: CommenApplicationNamespace.VisitorCard): void {
     this.cards.push(card);
+    localStorage.setItem('cards', JSON.stringify(this.cards));
   }
 
   public returnBook(id: string): boolean {
@@ -95,6 +119,7 @@ export class CardPageService {
     if (card) {
       card.returnBook = new Date();
       this.booksService.returnBook(`${card.bookId}`);
+      localStorage.setItem('cards', JSON.stringify(this.cards));
       return true;
     }
     return false;

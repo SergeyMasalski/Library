@@ -23,7 +23,7 @@ export class StatisticPageService {
     this.statisticHeader = value;
   }
 
-  get getPopularBooks(): (string | undefined)[] {
+  get getPopularBooks(): CommenApplicationNamespace.showStatistic[] {
     const statisticArray: CommenApplicationNamespace.PopularBooks[] = [];
     const arrayBooksIDs = this.cardService.getCards.map((item) => item.bookId);
     for (let i = 1; i <= Math.max(...arrayBooksIDs); i++) {
@@ -37,11 +37,14 @@ export class StatisticPageService {
     }
     return statisticArray
       .sort((a, b) => b.quantity - a.quantity)
-      .map((item) => this.booksService.getBook(`${item.idBook}`)?.name)
-      .slice(0, 5);
+      .slice(0, 5)
+      .map((item) => ({
+        name: this.booksService.getBook(`${item.idBook}`)?.name,
+        quantity: item.quantity,
+      }));
   }
 
-  get getActiveUsers(): (string | undefined)[] {
+  get getActiveUsers(): CommenApplicationNamespace.showStatistic[] {
     const statisticArray: CommenApplicationNamespace.ActiveUsers[] = [];
     const arrayVisitorsIDs = this.cardService.getCards.map(
       (item) => item.visitorId
@@ -58,10 +61,11 @@ export class StatisticPageService {
 
     return statisticArray
       .sort((a, b) => b.quantity - a.quantity)
-      .map(
-        (item) =>
-          this.visitorsService.getVisitor(`${item.idUser}`)?.visitorFullName
-      )
-      .slice(0, 5);
+      .slice(0, 5)
+      .map((item) => ({
+        name: this.visitorsService.getVisitor(`${item.idUser}`)
+          ?.visitorFullName,
+        quantity: item.quantity,
+      }));
   }
 }

@@ -1,6 +1,10 @@
 <div class="container-sub-header">
   <div class="container-sub-header__container-buttons">
-    <button class="container-sub-header__button" *ngFor="let item of buttons">
+    <button
+      class="container-sub-header__button"
+      *ngFor="let item of buttons"
+      (click)="showSelectValue(item)"
+    >
       {{ item }}
     </button>
   </div>

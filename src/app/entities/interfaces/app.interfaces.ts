@@ -32,4 +32,9 @@ export namespace CommenApplicationNamespace {
     idUser: number;
     quantity: number;
   }
+
+  export interface showStatistic {
+    name: string | undefined;
+    quantity: number;
+  }
 }

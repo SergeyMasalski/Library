@@ -8,28 +8,6 @@ import { VisitorsPageService } from 'src/app/servises/modules/visitors-page/visi
   styleUrls: ['./sort-search.component.scss'],
 })
 export class SortSearchComponentVisitors {
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (event.target instanceof HTMLElement) {
-      if (event.target.className === 'form-group__button sort') {
-        const selectedValue = this.sortForm.controls['sortVisitor'].value;
-
-        if (selectedValue === this.getSortValue[0]) {
-          this.visiorService.sortVisitorsIds();
-        }
-
-        if (selectedValue === this.getSortValue[1]) {
-          this.visiorService.sortVisitorsNames();
-        }
-      }
-
-      if (event.target.className === 'form-group__button search') {
-        this.visiorService.setSearchVisitors =
-          this.searchGroup.controls['searchVisitor'].value;
-      }
-    }
-  }
-
   public sortForm: FormGroup;
   public searchGroup: FormGroup;
 
@@ -45,5 +23,22 @@ export class SortSearchComponentVisitors {
 
   get getSortValue(): string[] {
     return this.visiorService.getHeadersInTable.slice(0, -1);
+  }
+
+  public sortVisitors(): void {
+    const selectedValue = this.sortForm.controls['sortVisitor'].value;
+
+    if (selectedValue === this.getSortValue[0]) {
+      this.visiorService.sortVisitorsIds();
+    }
+
+    if (selectedValue === this.getSortValue[1]) {
+      this.visiorService.sortVisitorsNames();
+    }
+  }
+
+  public searchVisitors(): void {
+    this.visiorService.setSearchVisitors =
+      this.searchGroup.controls['searchVisitor'].value;
   }
 }

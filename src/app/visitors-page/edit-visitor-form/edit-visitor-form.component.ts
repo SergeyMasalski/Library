@@ -8,31 +8,6 @@ import { VisitorsPageService } from 'src/app/servises/modules/visitors-page/visi
   styleUrls: ['./edit-visitor-form.component.scss'],
 })
 export class EditVisitorFormComponent {
-  @HostListener('click', ['$event'])
-  onClick(event: PointerEvent): void {
-    if (event.target instanceof Element) {
-      if (event.target.className === 'container-form__close') {
-        this.visitorService.closeFormEditVisitor();
-      }
-
-      if (event.target.className === 'container-form__save') {
-        if (this.validate) {
-          this.visitorService.editVisitor(
-            `${this.visitorService.editVisitorId}`,
-            {
-              visitorId: this.visitorService.editVisitorId,
-              visitorFullName:
-                this.editVisitorsForm.controls['visitorName'].value,
-              visitorPhone:
-                this.editVisitorsForm.controls['visitorPhone'].value,
-            }
-          );
-          this.visitorService.closeFormEditVisitor();
-        }
-      }
-    }
-  }
-
   public editVisitorsForm: FormGroup;
 
   constructor(private visitorService: VisitorsPageService) {
@@ -67,5 +42,22 @@ export class EditVisitorFormComponent {
       return true;
     }
     return false;
+  }
+
+  public closeForm(): void {
+    this.visitorService.closeFormEditVisitor();
+  }
+
+  public saveVisitor(): void {
+    if (this.validate) {
+      this.visitorService.editVisitor(`${this.visitorService.editVisitorId}`, {
+        visitorId: this.visitorService.editVisitorId,
+        visitorFullName: this.editVisitorsForm.controls['visitorName'].value,
+        visitorPhone: this.editVisitorsForm.controls['visitorPhone'].value,
+      });
+      console.log(this.validate);
+
+      this.visitorService.closeFormEditVisitor();
+    }
   }
 }

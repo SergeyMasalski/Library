@@ -11,43 +11,6 @@ import { CommenApplicationNamespace } from '../../entities/interfaces/app.interf
   styleUrls: ['./new-card-form.component.scss'],
 })
 export class NewCardFormComponent {
-  @HostListener('click', ['$event'])
-  onClick(event: PointerEvent) {
-    if (event.target instanceof Element) {
-      if (event.target.className === 'container-form__close') {
-        this.cardsService.closeFormNewCard();
-      }
-
-      if (event.target.className === 'container-form__save') {
-        const book: string = this.newCardForm.controls['book'].value;
-        const visitor: string = this.newCardForm.controls['visitor'].value;
-
-        const findVisitor: CommenApplicationNamespace.Visitor | undefined =
-          this.visitorsService.getVisitors.find(
-            (item) => item.visitorFullName === visitor
-          );
-        const findBook: CommenApplicationNamespace.Book | undefined =
-          this.booksService.getBooks.find((item) => item.name === book);
-
-        if (
-          findBook &&
-          findVisitor &&
-          this.booksService.issueBook(`${findBook.bookId}`)
-        ) {
-          this.cardsService.addCard({
-            idCard: this.cardsService.nextCardId,
-            bookId: findBook.bookId,
-            visitorId: findVisitor.visitorId,
-            tookBook: new Date(),
-            returnBook: null,
-          });
-
-          this.cardsService.closeFormNewCard();
-        }
-      }
-    }
-  }
-
   public newCardForm: FormGroup;
 
   constructor(
@@ -69,5 +32,37 @@ export class NewCardFormComponent {
 
   get getBooks(): CommenApplicationNamespace.Book[] {
     return this.booksService.getBooks;
+  }
+
+  public closeForm(): void {
+    this.cardsService.closeFormNewCard();
+  }
+
+  public saveCard(): void {
+    const book: string = this.newCardForm.controls['book'].value;
+    const visitor: string = this.newCardForm.controls['visitor'].value;
+
+    const findVisitor: CommenApplicationNamespace.Visitor | undefined =
+      this.visitorsService.getVisitors.find(
+        (item) => item.visitorFullName === visitor
+      );
+    const findBook: CommenApplicationNamespace.Book | undefined =
+      this.booksService.getBooks.find((item) => item.name === book);
+
+    if (
+      findBook &&
+      findVisitor &&
+      this.booksService.issueBook(`${findBook.bookId}`)
+    ) {
+      this.cardsService.addCard({
+        idCard: this.cardsService.nextCardId,
+        bookId: findBook.bookId,
+        visitorId: findVisitor.visitorId,
+        tookBook: new Date(),
+        returnBook: null,
+      });
+
+      this.cardsService.closeFormNewCard();
+    }
   }
 }

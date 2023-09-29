@@ -9,7 +9,7 @@
       <option *ngFor="let item of getSortValue">{{ item }}</option>
     </select>
   </label>
-  <button class="form-group__button sort">Sort</button>
+  <button class="form-group__button sort" (click)="sortVisitors()">Sort</button>
 </form>
 
 <form class="form-group" [formGroup]="searchGroup">
@@ -21,5 +21,7 @@
       formControlName="searchVisitor"
     />
   </label>
-  <button class="form-group__button search">Search</button>
+  <button class="form-group__button search" (click)="searchVisitors()">
+    Search
+  </button>
 </form>

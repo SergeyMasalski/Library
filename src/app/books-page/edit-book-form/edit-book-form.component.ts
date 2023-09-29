@@ -8,36 +8,6 @@ import { BookPageService } from 'src/app/servises/modules/book-page/book-page.se
   styleUrls: ['./edit-book-form.component.scss'],
 })
 export class EditBookFormComponent {
-  @HostListener('click', ['$event'])
-  onClick(event: PointerEvent) {
-    if (event.target instanceof Element) {
-      if (event.target.className === 'container-form__save') {
-        if (
-          this.validateForm(
-            this.nameBook,
-            this.nameAuthor,
-            this.publishingYear,
-            this.publishersName,
-            this.numberofPages,
-            this.numberofCopies
-          )
-        ) {
-          this.bookservice.editBook(`${this.bookservice.idEditsBook}`, {
-            bookId: this.bookservice.idEditsBook,
-            name: this.nameBook,
-            authorName: this.nameAuthor,
-            publishingYear: new Date(+this.publishingYear, 1, 1),
-            publishersName: this.publishersName,
-            numberOfPages: +this.numberofPages,
-            numberOfCopies: +this.numberofCopies,
-          });
-
-          this.bookservice.closeFormEditBook();
-        }
-      }
-    }
-  }
-
   public validate: boolean = false;
   public nameBook: string = this.bookservice.getEditsBook.name;
   public nameAuthor: string = this.bookservice.getEditsBook.authorName;
@@ -74,5 +44,30 @@ export class EditBookFormComponent {
     }
 
     return this.validate;
+  }
+
+  public saveChanges(): void {
+    if (
+      this.validateForm(
+        this.nameBook,
+        this.nameAuthor,
+        this.publishingYear,
+        this.publishersName,
+        this.numberofPages,
+        this.numberofCopies
+      )
+    ) {
+      this.bookservice.editBook(`${this.bookservice.idEditsBook}`, {
+        bookId: this.bookservice.idEditsBook,
+        name: this.nameBook,
+        authorName: this.nameAuthor,
+        publishingYear: new Date(+this.publishingYear, 1, 1),
+        publishersName: this.publishersName,
+        numberOfPages: +this.numberofPages,
+        numberOfCopies: +this.numberofCopies,
+      });
+
+      this.bookservice.closeFormEditBook();
+    }
   }
 }

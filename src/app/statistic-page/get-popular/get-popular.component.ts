@@ -8,20 +8,15 @@ import { StatisticPageService } from 'src/app/servises/modules/statistic-page/st
   styleUrls: ['./get-popular.component.scss'],
 })
 export class GetPopularComponent {
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (event.target instanceof HTMLElement) {
-      if (event.target.className === 'container-sub-header__button') {
-        this.statisticService.setStatisticHeader = event.target.innerText;
-      }
-    }
-  }
-
   public buttons: string[] = Object.values(Statistic);
 
   constructor(private statisticService: StatisticPageService) {}
 
   get getHeader(): string {
     return this.statisticService.getStatisticHeader;
+  }
+
+  public showSelectValue(value: string) {
+    this.statisticService.setStatisticHeader = value;
   }
 }
